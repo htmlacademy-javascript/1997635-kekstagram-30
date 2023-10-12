@@ -50,6 +50,7 @@ function makePositiveInteger(str) {
     }
   }
   const positiveInteger = parseInt(numberStr, 10);
+  console.log(positiveInteger)
   return positiveInteger ? positiveInteger : NaN;
 }
 
