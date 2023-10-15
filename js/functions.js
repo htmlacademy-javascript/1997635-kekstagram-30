@@ -49,9 +49,7 @@ function makePositiveInteger(str) {
       numberStr += symbol;
     }
   }
-  const positiveInteger = parseInt(numberStr, 10);
-  console.log(positiveInteger)
-  return positiveInteger ? positiveInteger : NaN;
+  return parseInt(numberStr, 10);
 }
 
 makePositiveInteger('2023 год'); // 2023
