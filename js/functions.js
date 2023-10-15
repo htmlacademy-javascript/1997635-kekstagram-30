@@ -4,9 +4,8 @@
  * @param {number} maxLength - Максимальная длина строки
  * @returns {boolean} Возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее.
  */
-function checkStringLength(str, maxLength) {
-  return str.length <= maxLength;
-}
+const checkStringLength = (str, maxLength) => str.length <= maxLength;
+
 
 // Cтрока короче 20 символов
 checkStringLength('проверяемая строка', 20); // true
@@ -20,14 +19,14 @@ checkStringLength('проверяемая строка', 10); // false
  * @param {string} str - Слово или фраза, которую нужно проверить
  * @returns {boolean} Возвращает true, если строка является палиндромом, и false, если строка не является палиндромом.
  */
-function isPalindrome(str) {
+const isPalindrome = (str) => {
   const str1 = str.toLowerCase().replaceAll(' ', '');
   let str2 = '';
   for (let i = str1.length - 1; i >= 0; i--) {
     str2 += str1[i];
   }
   return str1 === str2;
-}
+};
 
 // Строка является палиндромом
 isPalindrome('топот'); // true
@@ -41,7 +40,7 @@ isPalindrome('Лёша на полке клопа нашёл '); // true
 /**
  * Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN
  */
-function makePositiveInteger(str) {
+const makePositiveInteger = (str) => {
   str = str.toString();
   let numberStr = '';
   for (const symbol of str) {
@@ -50,7 +49,7 @@ function makePositiveInteger(str) {
     }
   }
   return parseInt(numberStr, 10);
-}
+};
 
 makePositiveInteger('2023 год'); // 2023
 makePositiveInteger('ECMAScript 2022'); // 2022
