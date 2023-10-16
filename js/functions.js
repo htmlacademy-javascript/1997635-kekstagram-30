@@ -59,3 +59,35 @@ makePositiveInteger('а я томат'); // NaN
 makePositiveInteger(2023); // 2023
 makePositiveInteger(-1); // 1
 makePositiveInteger(1.5); // 15
+
+/**
+ * Функция дополнения строк
+ * @param {string} str - Строка, которую нужно проверить
+ * @param {number} minLength - Минимальная длина строки
+ * @param {string} additionalEl - Добавочные символы
+ * @returns {string} Возвращает исходную строку, дополненную указанными символами до заданной длины
+ */
+const changeStr = (str, minLength, additionalEl) => {
+  if (minLength <= str.length) {
+    return str;
+  } else {
+    let result = str;
+    while (minLength > result.length) {
+      if ((additionalEl.length + result.length) <= minLength) {
+        result = additionalEl + result;
+      } else {
+        const symbolsAdd = minLength - result.length;
+        result = additionalEl.slice(0, symbolsAdd) + result;
+        break;
+      }
+
+    }
+    return result;
+  }
+// return str.padStart(minLength, additionalEl);
+};
+changeStr('1', 2, '0'); //'01'
+// console.log(changeStr('1', 4, '0')); //'0001'
+// console.log(changeStr('q', 4, 'werty')); //'werq'
+// console.log(changeStr('q', 4, 'we')); //'wweq'
+// console.log(changeStr('qwerty', 4, '0')); //'qwerty'
