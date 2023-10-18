@@ -72,22 +72,31 @@ const changeStr = (str, minLength, additionalEl) => {
     return str;
   } else {
     let result = str;
-    while (minLength > result.length) {
-      if ((additionalEl.length + result.length) <= minLength) {
-        result = additionalEl + result;
-      } else {
-        const symbolsAdd = minLength - result.length;
-        result = additionalEl.slice(0, symbolsAdd) + result;
-        break;
-      }
-
-    }
-    return result;
+    result = additionalEl.slice(0, minLength - result.length) + result;
+    return changeStr(result, minLength, additionalEl);
   }
-// return str.padStart(minLength, additionalEl);
 };
+
+/*if (minLength <= str.length) {
+  return str;
+} else {
+  let result = str;
+  while (minLength > result.length) {
+    if ((additionalEl.length + result.length) <= minLength) {
+      result = additionalEl + result;
+    } else {
+      const symbolsAdd = minLength - result.length;
+      result = additionalEl.slice(0, symbolsAdd) + result;
+      break;
+    }
+  }
+  return result;
+}*/
+
+// return str.padStart(minLength, additionalEl);
+
 changeStr('1', 2, '0'); //'01'
-// console.log(changeStr('1', 4, '0')); //'0001'
-// console.log(changeStr('q', 4, 'werty')); //'werq'
-// console.log(changeStr('q', 4, 'we')); //'wweq'
-// console.log(changeStr('qwerty', 4, '0')); //'qwerty'
+//console.log(changeStr('1', 4, '0')); //'0001'
+//console.log(changeStr('q', 4, 'werty')); //'werq'
+//console.log(changeStr('q', 4, 'we')); //'wweq'
+//console.log(changeStr('qwerty', 4, '0')); //'qwerty'
