@@ -1,3 +1,5 @@
-import {photoDescriptions} from './utils';
+import './utils';
 
-console.log(photoDescriptions);
+//import {photoDescriptions} from './utils';
+
+//console.table(photoDescriptions);
