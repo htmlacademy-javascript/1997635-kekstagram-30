@@ -100,3 +100,35 @@ changeStr('1', 2, '0'); //'01'
 //console.log(changeStr('q', 4, 'werty')); //'werq'
 //console.log(changeStr('q', 4, 'we')); //'wweq'
 //console.log(changeStr('qwerty', 4, '0')); //'qwerty'
+
+const getTime = (time) => {
+  if(String(time).includes(':', 0)) {
+    const timeArr = time.split(':');
+    return new Date().setHours(+timeArr[0], +timeArr[1], 0, 0);
+  } else {
+    return new Date().setHours(0, +time, 0, 0) - new Date().setHours(0, 0, 0, 0);
+  }
+};
+
+/**
+ * Функция определения выхода за рамки рабочего времени
+ * @param {string} startWorkTime - Строка, в которой содержится время начала рабочего дня в формате 08:05, 8:5, 08:5 или 8:05
+ * @param {string} endWorkTime - Строка, в которой содержится время конца рабочего дня
+ * @param {string} startMeetingTime - Время старта встречи
+ * @param {number} meetingDuration - Продолжительность встречи в минутах
+ * @returns {boolean} Возвращает true, если встреча не выходит за рамки рабочего дня, и false, если выходит
+ */
+const checkWorkingTimeLimits = (startWorkTime, endWorkTime, startMeetingTime, meetingDuration) => {
+  const startWorkTimeDate = getTime(startWorkTime);
+  const endWorkTimeDate = getTime(endWorkTime);
+  const startMeetingTimeDate = getTime(startMeetingTime);
+  const meetingDurationTime = getTime(meetingDuration);
+  return (startWorkTimeDate <= startMeetingTimeDate && (startMeetingTimeDate + meetingDurationTime) <= endWorkTimeDate);
+};
+
+
+console.log(checkWorkingTimeLimits('08:00', '17:30', '14:00', 90)); // true
+console.log(checkWorkingTimeLimits('8:0', '10:0', '8:0', 120)); // true
+console.log(checkWorkingTimeLimits('08:00', '14:30', '14:00', 90)); // false
+console.log(checkWorkingTimeLimits('14:00', '17:30', '08:0', 90)); // false
+console.log(checkWorkingTimeLimits('8:00', '17:30', '08:00', 900)); // false
