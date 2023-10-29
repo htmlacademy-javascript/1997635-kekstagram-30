@@ -1,4 +1,4 @@
-const descriptions = [
+const DESCRIPTIONS = [
   'Прекрасный момент',
   'Незабываемый день',
   'Буду помнить об этих моментах',
@@ -13,7 +13,7 @@ const descriptions = [
   'Моя жизнь не идеальна, но это лучшее, что когда-либо случалось со мной'
 ];
 
-const messages = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
@@ -24,7 +24,7 @@ const messages = [
   'Как можно было поймать такой неудачный момент?!'
 ];
 
-const names = [
+const NAMES = [
   'Михаил',
   'Александр',
   'Максим',
@@ -44,7 +44,7 @@ const names = [
   'Василиса'
 ];
 
-const surnames = [
+const SURNAMES = [
   'Ющенко',
   'Тимошенко',
   'Шнайдер',
@@ -64,4 +64,4 @@ const surnames = [
   'Трумпф'
 ];
 
-export {descriptions, messages, names, surnames};
+export {DESCRIPTIONS, MESSAGES, NAMES, SURNAMES};
