@@ -8,8 +8,8 @@ const bodyElement = document.querySelector('body');
 const commentsListElement = bigPictureModalElement.querySelector('.social__comments');
 const commentTemplate = document.querySelector('#social-comment').content.querySelector('.social__comment');
 const loaderBtnElement = bigPictureModalElement.querySelector('.social__comments-loader');
-const totalCommentCountElement = bigPictureModalElement.querySelector('.social__comment-count .social__comment-total-count');
-const shownCommentCountElement = bigPictureModalElement.querySelector('.social__comment-count .social__comment-shown-count');
+const totalCommentCountElement = bigPictureModalElement.querySelector('.social__comment-total-count');
+const shownCommentCountElement = bigPictureModalElement.querySelector('.social__comment-shown-count');
 
 const createComment = ({avatar, message, name}) => {
   const comment = commentTemplate.cloneNode(true);
@@ -51,8 +51,8 @@ const getThumbnailObject = (thumbnailId) => getPhotoDescriptions.find(({id}) => 
 const createBigPicture = ({url, likes, comments, description}) => {
   bigPictureModalElement.querySelector('.big-picture__img img').src = url;
   bigPictureModalElement.querySelector('.big-picture__img img').alt = description;
-  bigPictureModalElement.querySelector('.big-picture__social .social__header .social__caption').textContent = description;
-  bigPictureModalElement.querySelector('.big-picture__social .social__header .social__likes span').textContent = likes;
+  bigPictureModalElement.querySelector('.social__caption').textContent = description;
+  bigPictureModalElement.querySelector('.social__likes span').textContent = likes;
   socialComments = comments;
   renderCommentsFragment();
 };
