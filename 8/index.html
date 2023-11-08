@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Кекстаграм</title>
-  <script src="js/main.js" type="module"></script>
-  <script src="js/functions.js" defer></script>
   <base href="https://htmlacademy-javascript.github.io/1997635-kekstagram-30/8/">
 </head>
 
@@ -230,23 +228,24 @@
     </section>
   </template>
 
-    <!-- Сообщение с ошибкой загрузки изображений от других пользователей -->
-    <template id="data-error">
-      <section class="data-error">
-        <h2 class="data-error__title">Не удалось загрузить данные</h2>
-      </section>
-    </template>
+  <!-- Сообщение с ошибкой загрузки изображений от других пользователей -->
+  <template id="data-error">
+    <section class="data-error">
+      <h2 class="data-error__title">Не удалось загрузить данные</h2>
+    </section>
+  </template>
 
-    <template id="social-comment">
-      <li class="social__comment">
-        <img
-          class="social__picture"
-          src="аватар"
-          alt="имя комментатора"
+  <template id="social-comment">
+    <li class="social__comment">
+      <img
+      class="social__picture"
+      src="аватар"
+      alt="имя комментатора"
           width="35" height="35">
-        <p class="social__text">текст комментария</p>
+          <p class="social__text">текст комментария</p>
       </li>
     </template>
+    <script src="js/main.js" type="module"></script>
 
-</body>
-</html>
+  </body>
+  </html>
