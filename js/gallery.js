@@ -1,5 +1,5 @@
-import {renderThumbnailsFragment} from './thumbnail';
-import {openBigPictureModal, getThumbnailObject} from './full-image-modal';
+import {renderThumbnailsFragment} from './thumbnail.js';
+import {openBigPictureModal, getThumbnailObject} from './big-picture.js';
 
 const picturesElement = document.querySelector('.pictures');
 
