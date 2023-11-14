@@ -1,3 +1,6 @@
+import {initEffect, resetEffect} from './effect';
+import {resetScale} from './scale';
+
 const REGEXP_HASHTAG = /^#[a-zaа-яё1-9]{1,19}$/i;
 const MAX_HASHTAGS_COUNT = 5;
 const ErrorText = {
@@ -42,6 +45,8 @@ const openForm = () => {
 const closeForm = () => {
   formElement.reset();
   pristine.reset();
+  resetEffect();
+  resetScale();
   overlayElement.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -100,3 +105,4 @@ pristine.addValidator(
 formElement.addEventListener('submit', onFormSubmit);
 loadInputElement.addEventListener('change', onLoadInputChange);
 closeFormBtnElement.addEventListener('click', onCloseFormBtnClick);
+initEffect();
