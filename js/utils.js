@@ -1,35 +1,14 @@
-import {DESCRIPTIONS, MESSAGES, NAMES, SURNAMES} from './data';
+const REMOVE_MESSAGE_TIMEOUT = 5000;
 
-import {getRandomPositiveInteger, getRandomArrayElement, createRandomIdFromRangeGenerator} from './generate-random';
+const errorTemplate = document.querySelector('#data-error').content;
+const bodyElement = document.querySelector('body');
 
-const generateCommentId = createRandomIdFromRangeGenerator(1, 1000);
-
-const getMessages = (arr) => {
-  const messagesArr = new Set();
-  const quantity = getRandomPositiveInteger(1, 2);
-  while (messagesArr.size < quantity) {
-    messagesArr.add(getRandomArrayElement(arr));
-  }
-  return messagesArr;
+const showErrorMessage = () => {
+  bodyElement.append(errorTemplate);
+  setTimeout(() => {
+    const errorElement = document.querySelector('.data-error');
+    errorElement.remove();
+  }, REMOVE_MESSAGE_TIMEOUT);
 };
 
-const createComment = () => ({
-  id: generateCommentId(),
-  avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
-  message: getMessages(MESSAGES),
-  name: `${getRandomArrayElement(NAMES)} ${getRandomArrayElement(SURNAMES)}`
-});
-
-const generatePhotoDescriptionId = createRandomIdFromRangeGenerator(1, 25);
-
-const createPhotoDescription = () => ({
-  id: generatePhotoDescriptionId(),
-  url: `photos/${getRandomPositiveInteger(1, 25)}.jpg`,
-  description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomPositiveInteger(15, 200),
-  comments: Array.from({length: getRandomPositiveInteger(0, 30)}, createComment)
-});
-
-const getPhotoDescriptions = Array.from({length: 25}, createPhotoDescription);
-
-export {getPhotoDescriptions};
+export { showErrorMessage };
