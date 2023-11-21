@@ -1,5 +1,5 @@
-import {renderThumbnailsFragment} from './thumbnail.js';
-import {openBigPictureModal, getThumbnailObject} from './big-picture.js';
+import { renderThumbnailsFragment } from './thumbnail.js';
+import { openBigPictureModal, getThumbnailObject } from './big-picture.js';
 
 const picturesElement = document.querySelector('.pictures');
 
@@ -10,11 +10,11 @@ const renderGallery = (pictures) => {
       return;
     }
     evt.preventDefault();
-    const thumbnail = getThumbnailObject(thumbnailId);
+    const thumbnail = getThumbnailObject(thumbnailId, pictures);
     openBigPictureModal(thumbnail);
   });
 
   renderThumbnailsFragment(pictures, picturesElement);
 };
 
-export {renderGallery};
+export { renderGallery };

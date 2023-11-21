@@ -1,5 +1,7 @@
-import {initEffect, resetEffect} from './effect';
-import {resetScale} from './scale';
+import { initEffect, resetEffect } from './effect.js';
+import { resetScale } from './scale.js';
+import { showErrorMessage, showSuccesMessage } from './messages.js';
+import { sendData } from './api.js';
 
 const REGEXP_HASHTAG = /^#[a-zaа-яё1-9]{1,19}$/i;
 const MAX_HASHTAGS_COUNT = 5;
@@ -16,6 +18,8 @@ const overlayElement = formElement.querySelector('.img-upload__overlay');
 const closeFormBtnElement = formElement.querySelector('.img-upload__cancel');
 const hashtagsInputElement = formElement.querySelector('.text__hashtags');
 const commentInputElement = formElement.querySelector('.text__description');
+const submitFormElement = formElement.querySelector('.img-upload__submit');
+
 
 const defaultConfig = {
   classTo: 'img-upload__field-wrapper',
@@ -58,15 +62,27 @@ const isInputFocused = () => {
 };
 
 function onDocumentKeydown (evt) {
-  if(evt.key === 'Escape' && !isInputFocused) {
+  const isErrorMessageExists = Boolean(document.querySelector('.error'));
+  if(evt.key === 'Escape' && !isInputFocused && !isErrorMessageExists) {
     evt.preventDefault();
     closeForm();
   }
 }
 
 const onFormSubmit = (evt) => {
-  if(!pristine.validate()){
-    evt.preventDefault();
+  evt.preventDefault();
+  if(pristine.validate()){
+    submitFormElement.disabled = true;
+    const formData = new FormData(evt.target);
+    sendData(formData)
+      .then(() => {
+        closeForm();
+        showSuccesMessage();
+      }).catch(() => {
+        showErrorMessage();
+      }).finally(() => {
+        submitFormElement.disabled = false;
+      });
   }
 };
 

@@ -1,5 +1,3 @@
-import { getPhotoDescriptions } from './utils.js';
-
 const COUNT_SHOW_COMMENTS = 5;
 
 const bigPictureModalElement = document.querySelector('.big-picture');
@@ -11,6 +9,9 @@ const loaderBtnElement = bigPictureModalElement.querySelector('.social__comments
 const totalCommentCountElement = bigPictureModalElement.querySelector('.social__comment-total-count');
 const shownCommentCountElement = bigPictureModalElement.querySelector('.social__comment-shown-count');
 
+let commentsCount = 0;
+let socialComments = [];
+
 const createComment = ({avatar, message, name}) => {
   const comment = commentTemplate.cloneNode(true);
   comment.querySelector('.social__picture').src = avatar;
@@ -18,9 +19,6 @@ const createComment = ({avatar, message, name}) => {
   comment.querySelector('.social__text').textContent = [...message].join(' ');
   return comment;
 };
-
-let commentsCount = 0;
-let socialComments = [];
 
 const renderCommentsFragment = () => {
   commentsCount += COUNT_SHOW_COMMENTS;
@@ -46,7 +44,7 @@ const onLoaderClick = () => {
   renderCommentsFragment();
 };
 
-const getThumbnailObject = (thumbnailId) => getPhotoDescriptions.find(({id}) => id === +thumbnailId);
+const getThumbnailObject = (thumbnailId, pictures) => pictures.find(({id}) => id === +thumbnailId);
 
 const createBigPicture = ({url, likes, comments, description}) => {
   bigPictureModalElement.querySelector('.big-picture__img img').src = url;
@@ -84,4 +82,4 @@ closeBtnElement.addEventListener('click', () => {
 
 loaderBtnElement.addEventListener('click', onLoaderClick);
 
-export {openBigPictureModal, getThumbnailObject};
+export { openBigPictureModal, getThumbnailObject };
