@@ -24,7 +24,7 @@ const submitFormElement = formElement.querySelector('.img-upload__submit');
 const defaultConfig = {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper__error'
+  errorTextClass: 'img-upload__field-wrapper--error'
 };
 
 const pristine = new Pristine(formElement, defaultConfig, true);

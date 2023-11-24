@@ -19,4 +19,4 @@ const renderThumbnailsFragment = (arr, container) => {
   container.append(thumbnailsFragment);
 };
 
-export { renderThumbnailsFragment };
+export {renderThumbnailsFragment};
