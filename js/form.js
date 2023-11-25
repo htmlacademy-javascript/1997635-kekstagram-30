@@ -66,7 +66,7 @@ const isInputFocused = () => {
 
 function onDocumentKeydown (evt) {
   const isErrorMessageExists = Boolean(document.querySelector('.error'));
-  if(evt.key === 'Escape' && !isInputFocused && !isErrorMessageExists) {
+  if(evt.key === 'Escape' && !isInputFocused() && !isErrorMessageExists) {
     evt.preventDefault();
     closeForm();
   }

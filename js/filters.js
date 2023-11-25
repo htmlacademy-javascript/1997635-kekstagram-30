@@ -2,6 +2,7 @@ import { debounce, getRandomArrayElement } from './utils.js';
 import { renderGallery } from './gallery.js';
 
 const COUNT_RANDOM_FHOTO = 10;
+const TIMEOUT_REPAINT = 500;
 
 const FilterEnum = {
   DEFAULT: 'default',
@@ -44,7 +45,7 @@ const repaint = (evt, filter, data) => {
   }
 };
 
-const debouncedRepain = debounce(repaint);
+const debouncedRepain = debounce(repaint, TIMEOUT_REPAINT);
 
 const initFilters = (data) => {
   filtersElement.classList.remove('img-filters--inactive');
