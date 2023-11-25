@@ -10,6 +10,7 @@ const ErrorText = {
   INVALID_HASHTAG: 'Неправильный хэш-тег',
   NOT_UNIQUE: 'Один и тот же хэш-тег не может быть использован дважды'
 };
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const bodyElement = document.querySelector('body');
 const formElement = document.querySelector('.img-upload__form');
@@ -19,6 +20,8 @@ const closeFormBtnElement = formElement.querySelector('.img-upload__cancel');
 const hashtagsInputElement = formElement.querySelector('.text__hashtags');
 const commentInputElement = formElement.querySelector('.text__description');
 const submitFormElement = formElement.querySelector('.img-upload__submit');
+const photoPreview = formElement.querySelector('.img-upload__preview img');
+const effectsPreviews = formElement.querySelectorAll('.effects__preview');
 
 
 const defaultConfig = {
@@ -68,6 +71,22 @@ function onDocumentKeydown (evt) {
     closeForm();
   }
 }
+
+const isValidType = (file) => {
+  const fileName = file.name.toLowerCase();
+  return FILE_TYPES.some((it) => fileName.endsWith(it));
+};
+
+const onFileInputChange = () => {
+  const file = loadInputElement.files[0];
+  if (file && isValidType(file)) {
+    photoPreview.src = URL.createObjectURL(file);
+    effectsPreviews.forEach((el) => {
+      el.style.backgroundImage = `url('${photoPreview.src}')`;
+    });
+  }
+  openForm();
+};
 
 const onFormSubmit = (evt) => {
   evt.preventDefault();
@@ -121,4 +140,5 @@ pristine.addValidator(
 formElement.addEventListener('submit', onFormSubmit);
 loadInputElement.addEventListener('change', onLoadInputChange);
 closeFormBtnElement.addEventListener('click', onCloseFormBtnClick);
+loadInputElement.addEventListener('change', onFileInputChange);
 initEffect();
