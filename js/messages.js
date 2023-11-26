@@ -38,7 +38,7 @@ const showMessage = (element, btnClass) => {
   document.body.addEventListener('click', onBodyClick);
 };
 
-const showSuccesMessage = () => {
+const showSuccessMessage = () => {
   showMessage(successElement, BtnClasses.SUCCESS);
 };
 
@@ -46,4 +46,4 @@ const showErrorMessage = () => {
   showMessage(errorElement, BtnClasses.ERROR);
 };
 
-export { showErrorMessage, showSuccesMessage };
+export { showErrorMessage, showSuccessMessage };
