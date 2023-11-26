@@ -1,8 +1,8 @@
 import { debounce, getRandomArrayElement } from './utils.js';
 import { renderGallery } from './gallery.js';
 
-const COUNT_RANDOM_FHOTO = 10;
-const TIMEOUT_REPAINT = 500;
+const COUNT_RANDOM_PHOTO = 10;
+const TIMEOUT_REPEAINT = 500;
 
 const FilterEnum = {
   DEFAULT: 'default',
@@ -22,8 +22,8 @@ const filterHandlers = {
   [FilterEnum.DEFAULT]: (data) => data,
   [FilterEnum.RANDOM]: (data) => {
     const randomFhotos = new Set();
-    while ((data.length > COUNT_RANDOM_FHOTO) ?
-      (randomFhotos.size < COUNT_RANDOM_FHOTO) :
+    while ((data.length > COUNT_RANDOM_PHOTO) ?
+      (randomFhotos.size < COUNT_RANDOM_PHOTO) :
       (randomFhotos.size < data.length)) {
       randomFhotos.add(getRandomArrayElement(data));
     }
@@ -42,7 +42,7 @@ const repaint = (evt, filter, data) => {
   }
 };
 
-const debouncedRepain = debounce(repaint, TIMEOUT_REPAINT);
+const debouncedRepeaint = debounce(repaint, TIMEOUT_REPEAINT);
 
 const onFormElementClick = (evt) => {
   const filtersBtns = filtersFormElement.querySelectorAll('.img-filters__button');
@@ -59,13 +59,13 @@ const initFilters = (data) => {
   filtersElement.classList.remove('img-filters--inactive');
   filtersFormElement.addEventListener('click', onFormElementClick);
   defaultBtnFilter.addEventListener('click', (evt) => {
-    debouncedRepain(evt, FilterEnum.DEFAULT, data);
+    debouncedRepeaint(evt, FilterEnum.DEFAULT, data);
   });
   randomBtnFilter.addEventListener('click', (evt) => {
-    debouncedRepain(evt, FilterEnum.RANDOM, data);
+    debouncedRepeaint(evt, FilterEnum.RANDOM, data);
   });
   discussedBtnFilter.addEventListener('click', (evt) => {
-    debouncedRepain(evt, FilterEnum.DISCUSSED, data);
+    debouncedRepeaint(evt, FilterEnum.DISCUSSED, data);
   });
 };
 

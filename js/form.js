@@ -1,6 +1,6 @@
 import { initEffect, resetEffect } from './effect.js';
 import { resetScale } from './scale.js';
-import { showErrorMessage, showSuccesMessage } from './messages.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
 import { sendData } from './api.js';
 
 const REGEXP_HASHTAG = /^#[a-zaа-яё1-9]{1,19}$/i;
@@ -21,7 +21,7 @@ const hashtagsInputElement = formElement.querySelector('.text__hashtags');
 const commentInputElement = formElement.querySelector('.text__description');
 const submitFormElement = formElement.querySelector('.img-upload__submit');
 const photoPreview = formElement.querySelector('.img-upload__preview img');
-const effectsPreviews = formElement.querySelectorAll('.effects__preview');
+const effectsPreviewsElements = formElement.querySelectorAll('.effects__preview');
 
 
 const defaultConfig = {
@@ -81,7 +81,7 @@ const onFileInputChange = () => {
   const file = loadInputElement.files[0];
   if (file && isValidType(file)) {
     photoPreview.src = URL.createObjectURL(file);
-    effectsPreviews.forEach((el) => {
+    effectsPreviewsElements.forEach((el) => {
       el.style.backgroundImage = `url('${photoPreview.src}')`;
     });
   }
@@ -96,7 +96,7 @@ const onFormSubmit = (evt) => {
     sendData(formData)
       .then(() => {
         closeForm();
-        showSuccesMessage();
+        showSuccessMessage();
       }).catch(() => {
         showErrorMessage();
       }).finally(() => {
